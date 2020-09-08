@@ -16,7 +16,7 @@ export default function ZETBar() {
     return (
         <header className="sticky-top shadow">
             <Progress multi className="rounded-0">
-                <Progress bar color="danger" value={optPercent} />
+                <Progress bar color="primary" value={optPercent} />
                 <Progress bar color="warning" value={addPercent} />
             </Progress>
             <Progress multi className="mt-n3 text-center">

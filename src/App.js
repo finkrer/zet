@@ -1,16 +1,13 @@
 import React from 'react';
 import { Container, Button } from 'reactstrap';
-import { bySemester, optionalCourses } from './studyPlan';
+import { bySemester } from './studyPlan';
 import useLocalStorage from './useLocalStorage';
 import ZETBar from './components/ZETBar';
 import Context from './context';
 import Semester from './components/Semester';
 
 export default function App() {
-    const [get, set] = useLocalStorage(
-        'selected',
-        optionalCourses.map((x) => x.code)
-    );
+    const [get, set] = useLocalStorage('selected', []);
 
     const reset = () => set([]);
 

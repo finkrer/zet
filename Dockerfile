@@ -1,6 +1,6 @@
 FROM node:14-alpine
 
-RUN npm install -g server
+RUN npm install -g serve
 
 WORKDIR /app
 
