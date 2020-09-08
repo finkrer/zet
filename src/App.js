@@ -40,7 +40,7 @@ export default function App() {
                     </div>
                     {bySemester &&
                         bySemester.map((courses, i) => (
-                            <Semester courses={courses} index={i} />
+                            <Semester courses={courses} index={i} key={i} />
                         ))}
                 </Container>
             </Context.Provider>

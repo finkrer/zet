@@ -7,7 +7,11 @@ import config from '../config';
 
 export default function Semester({ courses, index }) {
     const toHtml = (c) => (
-        <Course className="col-lg-4 col-sm-6 px-1 py-1" course={c} />
+        <Course
+            className="col-lg-4 col-sm-6 px-1 py-1"
+            course={c}
+            key={c.code}
+        />
     );
 
     const { get } = useContext(context);
