@@ -4,29 +4,36 @@ import Course from './Course';
 import { requiredCourses } from '../studyPlan';
 
 export default function Semester({ courses, index }) {
-    const toHtml = (c) => <Course className="col-lg-4 col-sm-6 px-1 py-1" course={c} />;
+    const toHtml = (c) => (
+        <Course className="col-lg-4 col-sm-6 px-1 py-1" course={c} />
+    );
 
-    const groupByFilter = (filter, title) => (courses.some(filter)
-        ? (
-          <div>
-            <h5>{title}</h5>
-            <div className="m-2">
-              <div className="row">
-                {courses.filter(filter).map(toHtml)}
-              </div>
+    const groupByFilter = (filter, title) =>
+        courses.some(filter) ? (
+            <div>
+                <h5>{title}</h5>
+                <div className="m-2">
+                    <div className="row">
+                        {courses.filter(filter).map(toHtml)}
+                    </div>
+                </div>
             </div>
-          </div>
-        )
-        : null);
+        ) : null;
 
     return (
-      <div key={index}>
-        <h3>{`Семестр ${index + 1}`}</h3>
-        <div className="mb-5">
-          { groupByFilter((c) => requiredCourses.includes(c), 'Обязательные')}
-          { groupByFilter((c) => !requiredCourses.includes(c), 'Спец. курсы')}
+        <div key={index}>
+            <h3>{`Семестр ${index + 5}`}</h3>
+            <div className="mb-5">
+                {groupByFilter(
+                    (c) => requiredCourses.includes(c),
+                    'Обязательные'
+                )}
+                {groupByFilter(
+                    (c) => !requiredCourses.includes(c),
+                    'Спец. курсы'
+                )}
+            </div>
         </div>
-      </div>
     );
 }
 
@@ -34,7 +41,7 @@ Semester.propTypes = {
     courses: PropTypes.arrayOf(
         PropTypes.shape({
             required: PropTypes.bool.isRequired,
-        }).isRequired,
+        }).isRequired
     ).isRequired,
     index: PropTypes.number.isRequired,
 };
