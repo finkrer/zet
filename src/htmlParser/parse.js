@@ -3,14 +3,10 @@ const fs = require('fs');
 
 const toInt = (str) => parseInt(str, 10) || 0;
 
-const isBadHeader = (line) => line
-    .querySelector('.c1')
-    .rawText
-    .includes('Факультативы');
+const isBadHeader = (line) =>
+    line.querySelector('.c1').rawText.includes('Факультативы');
 
-const getCourseType = (line) => line
-    .querySelector('i')
-    .rawText;
+const getCourseType = (line) => line.querySelector('.c1').rawText;
 
 const isRequired = (line) => {
     const type = getCourseType(line);
@@ -23,27 +19,22 @@ const isRequired = (line) => {
 const regex = new RegExp(/((\d+\.\d+)\.\d+) (.*)/);
 
 function getCourses(line, required) {
-    const cells = line
-        .querySelectorAll('td')
-        .map((x) => x.rawText);
+    const cells = line.querySelectorAll('td').map((x) => x.rawText);
 
     if (cells.length < 4) return null;
 
     const name = cells[0].match(regex);
-    const semesters = cells[3]
-        .split(',')
-        .map(toInt);
+    const semesters = cells[3].split(',').map(toInt);
     const points = toInt(cells[1]) / semesters.length;
 
-    return semesters
-        .map((semester) => ({
-            mod: name[2],
-            code: `${name[1]}.${semester}`,
-            name: name[3],
-            points,
-            semester,
-            required,
-        }));
+    return semesters.map((semester) => ({
+        mod: name[2],
+        code: `${name[1]}.${semester}`,
+        name: name[3],
+        points,
+        semester,
+        required,
+    }));
 }
 
 function parseHtml(str) {
@@ -55,11 +46,12 @@ function parseHtml(str) {
         .querySelectorAll('tr');
 
     tableLines.every((line) => {
-        const type = line.classNames[0];
+        const type = line.classNames[1];
 
         if (type === 'tr-header' && isBadHeader(line)) return false;
         if (type === 'tr-third-header') required = isRequired(line);
-        if (!type && required !== null) courses = [...courses, ...getCourses(line, required)];
+        if (!type && required !== null)
+            courses = [...courses, ...getCourses(line, required)];
         return true;
     });
 
