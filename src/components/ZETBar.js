@@ -14,16 +14,21 @@ export default function ZETBar() {
     const sumPercent = useMemo(() => reqPercent + addPercent, [ctx]);
 
     return (
-      <header className="sticky-top shadow">
-        <Progress multi className="rounded-0">
-          <Progress bar color="danger" value={reqPercent} />
-          <Progress bar color="warning" value={addPercent} />
-        </Progress>
-        <Progress multi className="mt-n3 text-center">
-          <Progress bar color="transparent" value={sumPercent} className="text-right font-weight-bold pr-1">
-            {sum} / {config.maxPoints}
-          </Progress>
-        </Progress>
-      </header>
+        <header className="sticky-top shadow">
+            <Progress multi className="rounded-0">
+                <Progress bar color="danger" value={reqPercent} />
+                <Progress bar color="warning" value={addPercent} />
+            </Progress>
+            <Progress multi className="mt-n3 text-center">
+                <Progress
+                    bar
+                    color="transparent"
+                    value={sumPercent}
+                    className="text-right font-weight-bold pr-1"
+                >
+                    {sum} / {config.maxPoints}
+                </Progress>
+            </Progress>
+        </header>
     );
 }

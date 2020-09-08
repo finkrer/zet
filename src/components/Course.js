@@ -16,41 +16,38 @@ export default function Course({ course, className }) {
         }
     };
 
-    const classes = classnames(
-        'd-flex',
-        'py-2',
-        'h-100',
-        {
-            'bg-light': !get.includes(course.code),
-            'shadow': !get.includes(course.code),
-            'shadow-sm': get.includes(course.code),
-        },
-    );
+    const classes = classnames('d-flex', 'py-2', 'h-100', {
+        'bg-light': !get.includes(course.code),
+        shadow: !get.includes(course.code),
+        'shadow-sm': get.includes(course.code),
+    });
 
     const textColor = get.includes(course.code)
         ? 'text-secondary'
         : 'text-primary';
 
     return (
-      <div className={className} key={course.code}>
-        <Input
-          type="checkbox"
-          id={course.code}
-          checked={get.includes(course.code)}
-          onChange={() => inputClick(course.code)}
-          className="d-none"
-        />
-        <label htmlFor={course.code} className={classes}>
-          <div className="d-flex flex-column px-3">
-            <h3 className={`m-0 text-center ${textColor}`}>{course.points}</h3>
-            <small className="m-0">ЗЕТ</small>
-          </div>
-          <div className="d-flex flex-column pr-3">
-            <p className={`m-0 ${textColor}`}>{course.name}</p>
-            <p className="m-0 text-secondary">Модуль {course.mod}</p>
-          </div>
-        </label>
-      </div>
+        <div className={className} key={course.code}>
+            <Input
+                type="checkbox"
+                id={course.code}
+                checked={get.includes(course.code)}
+                onChange={() => inputClick(course.code)}
+                className="d-none"
+            />
+            <label htmlFor={course.code} className={classes}>
+                <div className="d-flex flex-column px-3">
+                    <h3 className={`m-0 text-center ${textColor}`}>
+                        {course.points}
+                    </h3>
+                    <small className="m-0">ЗЕТ</small>
+                </div>
+                <div className="d-flex flex-column pr-3">
+                    <p className={`m-0 ${textColor}`}>{course.name}</p>
+                    <p className="m-0 text-secondary">Модуль {course.mod}</p>
+                </div>
+            </label>
+        </div>
     );
 }
 
