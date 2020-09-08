@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Course from './Course';
-import { requiredCourses } from '../studyPlan';
+import { optionalCourses } from '../studyPlan';
+import context from '../context';
+import config from '../config';
 
 export default function Semester({ courses, index }) {
     const toHtml = (c) => (
         <Course className="col-lg-4 col-sm-6 px-1 py-1" course={c} />
     );
 
-    const groupByFilter = (filter, title) =>
+    const { get } = useContext(context);
+
+    const groupByFilter = (filter) =>
         courses.some(filter) ? (
             <div>
-                <h5>{title}</h5>
                 <div className="m-2">
                     <div className="row">
                         {courses.filter(filter).map(toHtml)}
@@ -23,15 +26,15 @@ export default function Semester({ courses, index }) {
     return (
         <div key={index}>
             <h3>{`Семестр ${index + 5}`}</h3>
+            <p>
+                {courses
+                    .filter((c) => get.includes(c.code))
+                    .map((c) => c.points)
+                    .reduce((a, b) => a + b, 0)}{' '}
+                / {config.semesterPoints[index]}
+            </p>
             <div className="mb-5">
-                {groupByFilter(
-                    (c) => requiredCourses.includes(c),
-                    'Обязательные'
-                )}
-                {groupByFilter(
-                    (c) => !requiredCourses.includes(c),
-                    'Спец. курсы'
-                )}
+                {groupByFilter((c) => optionalCourses.includes(c))}
             </div>
         </div>
     );

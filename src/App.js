@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Button } from 'reactstrap';
-import { bySemester, requiredCourses } from './studyPlan';
+import { bySemester, optionalCourses } from './studyPlan';
 import useLocalStorage from './useLocalStorage';
 import ZETBar from './components/ZETBar';
 import Context from './context';
@@ -9,10 +9,10 @@ import Semester from './components/Semester';
 export default function App() {
     const [get, set] = useLocalStorage(
         'selected',
-        requiredCourses.map((x) => x.code)
+        optionalCourses.map((x) => x.code)
     );
 
-    const reset = () => set(requiredCourses.map((x) => x.code));
+    const reset = () => set([]);
 
     return (
         <div className="App">
@@ -38,7 +38,6 @@ export default function App() {
                             </div>
                         </div>
                     </div>
-                    <p>Кнопка "Сброс" отмечает всё, кроме курсов по выбору.</p>
                     {bySemester &&
                         bySemester.map((courses, i) => (
                             <Semester courses={courses} index={i} />

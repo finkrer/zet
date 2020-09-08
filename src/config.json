@@ -1,3 +1,4 @@
 {
-    "maxPoints": 240
+    "maxPoints": 64,
+    "semesterPoints": [16, 11, 0, 0]
 }
