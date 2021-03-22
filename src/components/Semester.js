@@ -29,14 +29,16 @@ export default function Semester({ courses, index }) {
 
     return (
         <div key={index}>
-            <h3>{`Семестр ${index + 5}`}</h3>
-            <p>
-                {courses
-                    .filter((c) => get.includes(c.code))
-                    .map((c) => c.points)
-                    .reduce((a, b) => a + b, 0)}{' '}
-                / {config.semesterPoints[index]}
-            </p>
+            <div class="d-flex align-items-baseline">
+                <h3>{`Семестр ${index + 5}`}</h3>
+                <p class="ml-3">
+                    {courses
+                        .filter((c) => get.includes(c.mod))
+                        .map((c) => c.points)
+                        .reduce((a, b) => a + b, 0)}{' '}
+                    / {config.semesterPoints[index]}
+                </p>
+            </div>
             <div className="mb-5">
                 {groupByFilter((c) => optionalCourses.includes(c))}
             </div>

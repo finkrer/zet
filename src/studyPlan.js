@@ -5,19 +5,17 @@ export const bySemester = [5, 6, 7, 8].map((i) =>
     plan.filter((c) => c.semester === i)
 );
 
-export const optionalCourses = plan
-    .filter((c) => !c.required)
-    .concat(plan.filter((c) => c.mod === '1.53'));
+export const optionalCourses = plan.filter((c) => !c.required);
 
 export const sumOf = (codes) =>
     plan
-        .filter((c) => codes.includes(c.code))
+        .filter((c) => codes.includes(c.mod))
         .map((c) => c.points)
         .reduce((a, b) => a + b, 0);
 
 export const sumOptOf = (codes) =>
     optionalCourses
-        .filter((c) => codes.includes(c.code))
+        .filter((c) => codes.includes(c.mod))
         .map((c) => c.points)
         .reduce((a, b) => a + b, 0);
 

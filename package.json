@@ -4,16 +4,16 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "bootstrap": "^4.5.2",
+        "bootstrap": "^4.6.0",
         "classnames": "^2.2.6",
-        "node-html-parser": "^1.2.20",
-        "node-sass": "^4.14.1",
+        "node-html-parser": "^3.1.0",
+        "node-sass": "^5.0.0",
         "prop-types": "^15.7.2",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-scripts": "^3.4.3",
-        "reactstrap": "^8.5.1",
-        "styled-components": "^5.2.0"
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-scripts": "^4.0.3",
+        "reactstrap": "^8.9.0",
+        "styled-components": "^5.2.1"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -22,9 +22,6 @@
         "eject": "react-scripts eject",
         "deploy": "gh-pages -d build",
         "build+deploy": "react-scripts build && gh-pages -d build"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
     },
     "browserslist": {
         "production": [
