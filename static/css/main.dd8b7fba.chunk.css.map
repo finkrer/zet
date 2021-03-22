@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/styles.scss"],"names":[],"mappings":"AAIA,cACI,iBAAkB,CAClB,+BAAA,CAAA,uBAAwB","file":"main.dd8b7fba.chunk.css","sourcesContent":["@import '~bootstrap/scss/functions';\n@import '~bootstrap/scss/variables';\n@import '~bootstrap/scss/mixins/breakpoints';\n\n.progress-bar {\n    will-change: width;\n    transform: translateZ(0);\n}\n;;"]}
